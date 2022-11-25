@@ -9,6 +9,15 @@ const theme = createTheme({
       main: "#FFF",
     },
   },
+  typography: {
+    h1: {
+      fontSize: "30px",
+      fontWeight: 500,
+    },
+    body1: {
+      fontSize: "16px",
+    },
+  },
   components: {
     MuiDrawer: {
       styleOverrides: {

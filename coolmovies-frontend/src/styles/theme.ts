@@ -11,8 +11,12 @@ const theme = createTheme({
   },
   typography: {
     h1: {
-      fontSize: "30px",
+      fontSize: "2.75rem",
       fontWeight: 500,
+    },
+    subtitle1: {
+      fontWeight: 300,
+      color: "rgba(0, 0, 0, 0.6)",
     },
     body1: {
       fontSize: "16px",
@@ -25,6 +29,13 @@ const theme = createTheme({
           backgroundColor: "#222",
           color: "#FFF",
           width: "250px",
+        },
+      },
+    },
+    MuiContainer: {
+      styleOverrides: {
+        root: {
+          padding: "32px",
         },
       },
     },

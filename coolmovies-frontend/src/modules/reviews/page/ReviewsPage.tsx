@@ -19,7 +19,7 @@ const ReviewsPage = () => {
         <Typography variant="h1" textAlign="center">
           Movie Reviews
         </Typography>
-        <Typography variant="body1">
+        <Typography variant="subtitle1" textAlign="center" marginTop="24px">
           Here you can see reviews for every movie on the list!
         </Typography>
         <Container>

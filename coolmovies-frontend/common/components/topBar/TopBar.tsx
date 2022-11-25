@@ -24,7 +24,7 @@ const TopBar = ({ title }: Props) => {
   const toggleDrawer = () => setIsDrawerOpen((isOpen) => !isOpen);
 
   return (
-    <AppBar color="primary" css={styles.root}>
+    <AppBar position="static" color="primary" css={styles.root}>
       <IconButton
         size="medium"
         edge="start"

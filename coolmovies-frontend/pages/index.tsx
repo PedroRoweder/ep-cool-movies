@@ -1,13 +1,8 @@
 import { css } from "@emotion/react";
-import {
-  Button,
-  Paper,
-  TextField,
-  Tooltip,
-  Typography,
-  Zoom,
-} from "@mui/material";
+import { Button, TextField, Tooltip, Typography, Zoom } from "@mui/material";
 import type { NextPage } from "next";
+import Link from "next/link";
+import TopBar from "../common/components/topBar";
 import { exampleActions, useAppDispatch, useAppSelector } from "../redux";
 
 const primary = "#1976d2";
@@ -17,9 +12,7 @@ const Home: NextPage = () => {
   const exampleState = useAppSelector((state) => state.example);
   return (
     <div css={styles.root}>
-      <Paper elevation={3} css={styles.navBar}>
-        <Typography>{"EcoPortal"}</Typography>
-      </Paper>
+      <TopBar title="EcoPortal" />
 
       <div css={styles.body}>
         <Typography variant={"h1"} css={styles.heading}>
@@ -56,6 +49,7 @@ const Home: NextPage = () => {
           >
             {exampleState.fetchData ? "Hide some data" : "Fetch some data"}
           </Button>
+          <Link href="/reviews">Reviews</Link>
         </div>
 
         <Zoom in={Boolean(exampleState.fetchData)} unmountOnExit mountOnEnter>

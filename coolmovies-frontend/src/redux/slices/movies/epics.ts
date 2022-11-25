@@ -2,6 +2,7 @@ import { gql } from "@apollo/client";
 import { Epic, StateObservable } from "redux-observable";
 import { Observable } from "rxjs";
 import { filter, switchMap } from "rxjs/operators";
+import { moviesView } from "../../../common/views";
 import { RootState } from "../../store";
 import { EpicDependencies } from "../../types";
 import { actions, SliceAction } from "./slice";
@@ -15,12 +16,13 @@ export const fetchAllMoviesEpic: Epic = (
     filter(actions.fetch.match),
     switchMap(async () => {
       try {
-        const result = await client.query<{
-          allMovies?: { nodes?: Movies.Data[] };
-        }>({
+        const result = await client.query<Movies.AllMoviesResponse>({
           query: queryAllMovies,
         });
-        return actions.loaded({ data: result.data?.allMovies?.nodes || [] });
+
+        const movies = moviesView(result.data);
+
+        return actions.loaded({ data: movies });
       } catch (err) {
         return actions.loadError();
       }
@@ -40,6 +42,11 @@ const queryAllMovies = gql`
         }
         movieDirectorByMovieDirectorId {
           name
+        }
+        movieReviewsByMovieId {
+          nodes {
+            rating
+          }
         }
       }
     }

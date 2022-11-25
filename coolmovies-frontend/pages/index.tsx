@@ -2,7 +2,7 @@ import { css } from "@emotion/react";
 import { Button, TextField, Tooltip, Typography, Zoom } from "@mui/material";
 import type { NextPage } from "next";
 import Link from "next/link";
-import TopBar from "../common/components/topBar";
+import { TopBar } from "../common/components";
 import { exampleActions, useAppDispatch, useAppSelector } from "../redux";
 
 const primary = "#1976d2";

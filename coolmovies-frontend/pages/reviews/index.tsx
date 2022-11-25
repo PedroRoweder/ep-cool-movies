@@ -1,4 +1,4 @@
-import TopBar from "../../common/components/topBar";
+import { TopBar } from "../../common/components";
 
 const Reviews = () => {
   return (

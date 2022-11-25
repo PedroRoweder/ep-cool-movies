@@ -1,8 +1,9 @@
 import React from "react";
-import { Container, Typography } from "@mui/material";
+import { Box, Container, Typography } from "@mui/material";
 import { useEffect } from "react";
 import { TopBar } from "../../../common/components";
 import { moviesActions, useAppDispatch, useAppSelector } from "../../../redux";
+import { MovieCard } from "../components";
 
 const ReviewsPage = () => {
   const dispatch = useAppDispatch();
@@ -22,11 +23,11 @@ const ReviewsPage = () => {
         <Typography variant="subtitle1" textAlign="center" marginTop="24px">
           Here you can see reviews for every movie on the list!
         </Typography>
-        <Container>
+        <Box display="flex" marginTop="32px">
           {moviesState?.moviesData?.map((movie) => (
-            <div key={movie.id}>{movie.title}</div>
+            <MovieCard key={movie.id} {...movie} />
           ))}
-        </Container>
+        </Box>
       </Container>
     </>
   );

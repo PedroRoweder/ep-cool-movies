@@ -1,4 +1,4 @@
-import { css } from '@emotion/react';
+import { css } from "@emotion/react";
 import {
   Button,
   Paper,
@@ -6,11 +6,11 @@ import {
   Tooltip,
   Typography,
   Zoom,
-} from '@mui/material';
-import type { NextPage } from 'next';
-import { exampleActions, useAppDispatch, useAppSelector } from '../redux';
+} from "@mui/material";
+import type { NextPage } from "next";
+import { exampleActions, useAppDispatch, useAppSelector } from "../redux";
 
-const primary = '#1976d2';
+const primary = "#1976d2";
 
 const Home: NextPage = () => {
   const dispatch = useAppDispatch();
@@ -18,14 +18,14 @@ const Home: NextPage = () => {
   return (
     <div css={styles.root}>
       <Paper elevation={3} css={styles.navBar}>
-        <Typography>{'EcoPortal'}</Typography>
+        <Typography>{"EcoPortal"}</Typography>
       </Paper>
 
       <div css={styles.body}>
-        <Typography variant={'h1'} css={styles.heading}>
-          {'EcoPortal Coolmovies Test'}
+        <Typography variant={"h1"} css={styles.heading}>
+          {"EcoPortal Coolmovies Test"}
         </Typography>
-        <Typography variant={'subtitle1'} css={styles.subtitle}>
+        <Typography variant={"subtitle1"} css={styles.subtitle}>
           {`Thank you for taking the time to take our test. We really appreciate it. 
         All the information on what is required can be found in the README at the root of this repo. 
         Please dont spend ages on this and just get through as much of it as you can. 
@@ -38,14 +38,14 @@ const Home: NextPage = () => {
             arrow
           >
             <Button
-              variant={'contained'}
+              variant={"contained"}
               onClick={() => dispatch(exampleActions.increment())}
             >
               {`Redux Increment: ${exampleState.value}`}
             </Button>
           </Tooltip>
           <Button
-            variant={'outlined'}
+            variant={"outlined"}
             onClick={() =>
               dispatch(
                 exampleState.fetchData
@@ -54,7 +54,7 @@ const Home: NextPage = () => {
               )
             }
           >
-            {exampleState.fetchData ? 'Hide some data' : 'Fetch some data'}
+            {exampleState.fetchData ? "Hide some data" : "Fetch some data"}
           </Button>
         </div>
 
@@ -62,7 +62,7 @@ const Home: NextPage = () => {
           <TextField
             css={styles.dataInput}
             multiline
-            label={'Some Data'}
+            label={"Some Data"}
             defaultValue={JSON.stringify(exampleState.fetchData)}
           />
         </Zoom>
@@ -73,47 +73,47 @@ const Home: NextPage = () => {
 
 const styles = {
   root: css({
-    height: '100vh',
-    width: '100%',
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
+    height: "100vh",
+    width: "100%",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
   }),
   navBar: css({
     background: primary,
     height: 50,
-    alignSelf: 'stretch',
-    display: 'flex',
-    alignItems: 'center',
+    alignSelf: "stretch",
+    display: "flex",
+    alignItems: "center",
     padding: 16,
     borderRadius: 0,
     p: {
-      color: 'white',
+      color: "white",
     },
   }),
   body: css({
-    alignSelf: 'stretch',
+    alignSelf: "stretch",
     padding: 32,
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
   }),
-  heading: css({ marginTop: 16, fontSize: '2.75rem', textAlign: 'center' }),
+  heading: css({ marginTop: 16, fontSize: "2.75rem", textAlign: "center" }),
   subtitle: css({
     fontWeight: 300,
-    textAlign: 'center',
+    textAlign: "center",
     maxWidth: 600,
-    margin: '24px 0',
-    color: 'rgba(0, 0, 0, 0.6)',
+    margin: "24px 0",
+    color: "rgba(0, 0, 0, 0.6)",
   }),
   mainControls: css({
-    display: 'flex',
-    alignItems: 'center',
+    display: "flex",
+    alignItems: "center",
     button: { marginRight: 16 },
   }),
   dataInput: css({
-    alignSelf: 'stretch',
-    margin: '32px 0',
+    alignSelf: "stretch",
+    margin: "32px 0",
   }),
 };
 

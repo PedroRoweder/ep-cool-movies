@@ -1,13 +1,13 @@
-import { gql } from '@apollo/client';
-import { Epic, StateObservable } from 'redux-observable';
-import { Observable } from 'rxjs';
-import { filter, map, switchMap } from 'rxjs/operators';
-import { RootState } from '../../store';
-import { EpicDependencies } from '../../types';
-import { actions, SliceAction } from './slice';
+import { gql } from "@apollo/client";
+import { Epic, StateObservable } from "redux-observable";
+import { Observable } from "rxjs";
+import { filter, map, switchMap } from "rxjs/operators";
+import { RootState } from "../../store";
+import { EpicDependencies } from "../../types";
+import { actions, SliceAction } from "./slice";
 
 export const exampleEpic: Epic = (
-  action$: Observable<SliceAction['increment']>,
+  action$: Observable<SliceAction["increment"]>,
   state$: StateObservable<RootState>
 ) =>
   action$.pipe(
@@ -17,7 +17,7 @@ export const exampleEpic: Epic = (
   );
 
 export const exampleAsyncEpic: Epic = (
-  action$: Observable<SliceAction['fetch']>,
+  action$: Observable<SliceAction["fetch"]>,
   state$: StateObservable<RootState>,
   { client }: EpicDependencies
 ) =>

@@ -29,6 +29,36 @@ export const fetchAllMoviesEpic: Epic = (
     })
   );
 
+export const fetchMovieReviewsEpic: Epic = (
+  action$: Observable<SliceAction["fetchMovieReviews"]>,
+  _: StateObservable<RootState>,
+  { client }: EpicDependencies
+) =>
+  action$.pipe(
+    filter(actions.fetchMovieReviews.match),
+    switchMap(async ({ payload }) => {
+      try {
+        const result = await client.query<{
+          allMovieReviews?: {
+            nodes?: Movies.ReviewsData[];
+          };
+        }>({
+          query: queryAllMovieReviews(payload.movieId),
+          fetchPolicy: "no-cache",
+        });
+
+        console.log(result);
+
+        return actions.loadedReviews({
+          data: result.data.allMovieReviews?.nodes || [],
+        });
+      } catch (err) {
+        console.log(err);
+        return actions.loadError();
+      }
+    })
+  );
+
 const queryAllMovies = gql`
   query AllMovies {
     allMovies {
@@ -48,6 +78,22 @@ const queryAllMovies = gql`
             rating
           }
         }
+      }
+    }
+  }
+`;
+
+const queryAllMovieReviews = (movieId: string) => gql`
+  query AllMovieReviews {
+    allMovieReviews(filter: { movieId: { equalTo: "${movieId}" } }) {
+      nodes {
+        body
+        id
+        userByUserReviewerId {
+          name
+        }
+        rating
+        title
       }
     }
   }

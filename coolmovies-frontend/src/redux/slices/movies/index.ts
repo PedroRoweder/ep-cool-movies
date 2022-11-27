@@ -1,5 +1,9 @@
 export { actions as moviesActions } from "./slice";
 export { default as moviesReducer } from "./slice";
-import { fetchAllMoviesEpic } from "./epics";
+import { combineEpics } from "redux-observable";
+import { fetchAllMoviesEpic, fetchMovieReviewsEpic } from "./epics";
 
-export const moviesEpics = fetchAllMoviesEpic;
+export const moviesEpics = combineEpics(
+  fetchAllMoviesEpic,
+  fetchMovieReviewsEpic
+);

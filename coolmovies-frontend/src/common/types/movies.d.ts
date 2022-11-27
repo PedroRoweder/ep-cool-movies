@@ -9,6 +9,13 @@ namespace Movies {
     averageRating: number;
   }
 
+  interface ReviewsData {
+    body: string;
+    id: string;
+    rating: number;
+    title: string;
+  }
+
   interface AllMoviesResponse {
     allMovies?: {
       nodes?: {

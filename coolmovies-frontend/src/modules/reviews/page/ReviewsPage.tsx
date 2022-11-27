@@ -1,17 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import { Box, Container, Typography } from "@mui/material";
 import { useEffect } from "react";
 import { TopBar } from "../../../common/components";
 import { moviesActions, useAppDispatch, useAppSelector } from "../../../redux";
 import { MovieCard } from "../components";
+import MovieDetailsModal from "../components/movieDetailsModal";
 
 const ReviewsPage = () => {
   const dispatch = useAppDispatch();
+  const [isDetailsOpen, setIsDetailsOpen] = useState(false);
   const moviesState = useAppSelector((state) => state.movies);
 
   useEffect(() => {
     dispatch(moviesActions.fetch());
   }, [dispatch]);
+
+  const toggleDetailsOpen = () => setIsDetailsOpen((isOpen) => !isOpen);
 
   return (
     <>
@@ -25,9 +29,20 @@ const ReviewsPage = () => {
         </Typography>
         <Box display="flex" marginTop="32px">
           {moviesState?.moviesData?.map((movie) => (
-            <MovieCard key={movie.id} {...movie} />
+            <MovieCard
+              key={movie.id}
+              openDetails={toggleDetailsOpen}
+              {...movie}
+            />
           ))}
         </Box>
+        {moviesState.selectedMovie && (
+          <MovieDetailsModal
+            isDetailsOpen={isDetailsOpen}
+            selectedMovie={moviesState.selectedMovie}
+            toggleDetailsOpen={toggleDetailsOpen}
+          />
+        )}
       </Container>
     </>
   );

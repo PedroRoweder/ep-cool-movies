@@ -1,3 +1,4 @@
+import React from "react";
 import { Close } from "@mui/icons-material";
 import { IconButton, Modal, Rating, Typography } from "@mui/material";
 import { Box } from "@mui/system";
@@ -6,6 +7,7 @@ import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../../../../redux";
 import { actions as movieActions } from "../../../../redux/slices/movies/slice";
 import styles from "./styles";
+import MovieRatingForm from "../movieRatingForm";
 
 interface Props {
   isDetailsOpen: boolean;
@@ -77,7 +79,7 @@ const MovieDetailsModal = ({
               </div>
             ))}
           </Box>
-          <Box css={styles.reviewFormContainer}>add review</Box>
+          <MovieRatingForm />
         </Box>
       </div>
     </Modal>

@@ -40,7 +40,7 @@ const styles = {
   }),
   reviewsContainer: css({
     width: 600,
-    height: 400,
+    height: 350,
     padding: "32px",
   }),
   review: css({
@@ -48,12 +48,6 @@ const styles = {
     borderRadius: "5px",
     backgroundColor: "#eee",
     marginBottom: "32px",
-  }),
-  reviewFormContainer: css({
-    width: 600,
-    height: 200,
-    borderTop: "1px solid lightgrey",
-    padding: "32px",
   }),
 };
 

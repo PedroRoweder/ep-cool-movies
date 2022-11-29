@@ -8,6 +8,7 @@ import { useAppDispatch, useAppSelector } from "../../../../redux";
 import { actions as movieActions } from "../../../../redux/slices/movies/slice";
 import styles from "./styles";
 import MovieRatingForm from "../movieRatingForm";
+import { MovieReview } from "../movieReview";
 
 interface Props {
   isDetailsOpen: boolean;
@@ -65,18 +66,11 @@ const MovieDetailsModal = ({
         <Box display="flex" flexDirection="column">
           <Box css={styles.reviewsContainer} overflow="auto">
             {moviesState.selectedMovieReviews.map((review) => (
-              <div css={styles.review} key={review.id}>
-                <Box
-                  display="flex"
-                  justifyContent="space-between"
-                  marginBottom={2}
-                >
-                  <Typography variant="body1">{review.title}</Typography>
-                  <Rating value={4} precision={0.1} readOnly size="small" />
-                </Box>
-
-                <Typography>{review.body}</Typography>
-              </div>
+              <MovieReview
+                key={review.id}
+                movieId={selectedMovie.id}
+                {...review}
+              />
             ))}
           </Box>
           <MovieRatingForm selectedMovieId={selectedMovie.id} />

@@ -30,6 +30,10 @@ export const slice = createSlice({
       state.selectedMovie = action.payload.movie;
     },
     createReview: (_, __: PayloadAction<{ review: Movies.CreateReview }>) => {},
+    updateReview: (
+      _,
+      __: PayloadAction<{ review: Movies.CreateReview; reviewId: string }>
+    ) => {},
     clearSelectedMovie: (state) => {
       state.selectedMovie = undefined;
     },

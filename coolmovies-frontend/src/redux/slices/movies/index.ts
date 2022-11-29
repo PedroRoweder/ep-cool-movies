@@ -4,11 +4,13 @@ import { combineEpics } from "redux-observable";
 import {
   fetchAllMoviesEpic,
   fetchMovieReviewsEpic,
-  createMoviewReviewEpic,
+  createMovieReviewEpic,
+  updateMovieReviewEpic,
 } from "./epics";
 
 export const moviesEpics = combineEpics(
   fetchAllMoviesEpic,
   fetchMovieReviewsEpic,
-  createMoviewReviewEpic
+  createMovieReviewEpic,
+  updateMovieReviewEpic
 );

@@ -58,7 +58,7 @@ export const fetchMovieReviewsEpic: Epic = (
     })
   );
 
-export const createMoviewReviewEpic: Epic = (
+export const createMovieReviewEpic: Epic = (
   action$: Observable<SliceAction["createReview"]>,
   _: StateObservable<RootState>,
   { client }: EpicDependencies
@@ -75,6 +75,33 @@ export const createMoviewReviewEpic: Epic = (
                 ...payload.review,
                 userReviewerId: "5f1e6707-7c3a-4acd-b11f-fd96096abd5a",
               },
+            },
+          },
+        });
+
+        return actions.fetchMovieReviews({ movieId: payload.review.movieId });
+      } catch (err) {
+        console.log(err);
+        return actions.loadError();
+      }
+    })
+  );
+
+export const updateMovieReviewEpic: Epic = (
+  action$: Observable<SliceAction["updateReview"]>,
+  _: StateObservable<RootState>,
+  { client }: EpicDependencies
+) =>
+  action$.pipe(
+    filter(actions.updateReview.match),
+    switchMap(async ({ payload }) => {
+      try {
+        await client.mutate({
+          mutation: mutationUpdateMovieReview,
+          variables: {
+            input: {
+              movieReviewPatch: payload.review,
+              id: payload.reviewId,
             },
           },
         });
@@ -130,6 +157,14 @@ const queryAllMovieReviews = gql`
 const mutationCreateMovieReview = gql`
   mutation CreateReviewMutation($input: CreateMovieReviewInput!) {
     createMovieReview(input: $input) {
+      clientMutationId
+    }
+  }
+`;
+
+const mutationUpdateMovieReview = gql`
+  mutation UpdateReviewMutation($input: UpdateMovieReviewByIdInput!) {
+    updateMovieReviewById(input: $input) {
       clientMutationId
     }
   }

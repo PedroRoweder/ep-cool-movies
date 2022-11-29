@@ -43,12 +43,6 @@ const styles = {
     height: 350,
     padding: "32px",
   }),
-  review: css({
-    padding: "15px",
-    borderRadius: "5px",
-    backgroundColor: "#eee",
-    marginBottom: "32px",
-  }),
 };
 
 export default styles;

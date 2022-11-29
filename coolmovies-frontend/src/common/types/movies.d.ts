@@ -22,6 +22,7 @@ namespace Movies {
     body: string;
     movieId: string;
   }
+
   interface AllMoviesResponse {
     allMovies?: {
       nodes?: {

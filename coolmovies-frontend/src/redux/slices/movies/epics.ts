@@ -43,15 +43,43 @@ export const fetchMovieReviewsEpic: Epic = (
             nodes?: Movies.ReviewsData[];
           };
         }>({
-          query: queryAllMovieReviews(payload.movieId),
+          query: queryAllMovieReviews,
+          variables: { movieId: payload.movieId },
           fetchPolicy: "no-cache",
         });
-
-        console.log(result);
 
         return actions.loadedReviews({
           data: result.data.allMovieReviews?.nodes || [],
         });
+      } catch (err) {
+        console.log(err);
+        return actions.loadError();
+      }
+    })
+  );
+
+export const createMoviewReviewEpic: Epic = (
+  action$: Observable<SliceAction["createReview"]>,
+  _: StateObservable<RootState>,
+  { client }: EpicDependencies
+) =>
+  action$.pipe(
+    filter(actions.createReview.match),
+    switchMap(async ({ payload }) => {
+      try {
+        await client.mutate({
+          mutation: mutationCreateMovieReview,
+          variables: {
+            input: {
+              movieReview: {
+                ...payload.review,
+                userReviewerId: "5f1e6707-7c3a-4acd-b11f-fd96096abd5a",
+              },
+            },
+          },
+        });
+
+        return actions.fetchMovieReviews({ movieId: payload.review.movieId });
       } catch (err) {
         console.log(err);
         return actions.loadError();
@@ -83,9 +111,9 @@ const queryAllMovies = gql`
   }
 `;
 
-const queryAllMovieReviews = (movieId: string) => gql`
-  query AllMovieReviews {
-    allMovieReviews(filter: { movieId: { equalTo: "${movieId}" } }) {
+const queryAllMovieReviews = gql`
+  query AllMovieReviews($movieId: UUID!) {
+    allMovieReviews(filter: { movieId: { equalTo: $movieId } }) {
       nodes {
         body
         id
@@ -95,6 +123,14 @@ const queryAllMovieReviews = (movieId: string) => gql`
         rating
         title
       }
+    }
+  }
+`;
+
+const mutationCreateMovieReview = gql`
+  mutation CreateReviewMutation($input: CreateMovieReviewInput!) {
+    createMovieReview(input: $input) {
+      clientMutationId
     }
   }
 `;

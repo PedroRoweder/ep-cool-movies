@@ -79,7 +79,7 @@ const MovieDetailsModal = ({
               </div>
             ))}
           </Box>
-          <MovieRatingForm />
+          <MovieRatingForm selectedMovieId={selectedMovie.id} />
         </Box>
       </div>
     </Modal>

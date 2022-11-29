@@ -1,7 +1,7 @@
 const moviesView = (movies: Movies.AllMoviesResponse): Movies.Data[] => {
   if (!movies.allMovies || !movies.allMovies.nodes) return [];
 
-  const abd = movies.allMovies.nodes.map((movie) => {
+  const view = movies.allMovies.nodes.map((movie) => {
     const reviewsCount = movie.movieReviewsByMovieId.nodes.length;
     const ratingsSum = movie.movieReviewsByMovieId.nodes.reduce(
       (acc, { rating }) => acc + rating,
@@ -19,7 +19,7 @@ const moviesView = (movies: Movies.AllMoviesResponse): Movies.Data[] => {
     };
   });
 
-  return abd;
+  return view;
 };
 
 export default moviesView;

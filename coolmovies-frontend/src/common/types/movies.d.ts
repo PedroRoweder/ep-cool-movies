@@ -16,6 +16,12 @@ namespace Movies {
     title: string;
   }
 
+  interface CreateReview {
+    title: string;
+    rating: number;
+    body: string;
+    movieId: string;
+  }
   interface AllMoviesResponse {
     allMovies?: {
       nodes?: {

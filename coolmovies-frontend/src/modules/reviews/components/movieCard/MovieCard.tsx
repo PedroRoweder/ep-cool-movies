@@ -1,6 +1,6 @@
+import React from "react";
 import { Box, Rating, Typography } from "@mui/material";
 import Image from "next/image";
-import React from "react";
 import { moviesActions, useAppDispatch } from "../../../../redux";
 import styles from "./styles";
 

@@ -31,7 +31,8 @@ export const createStore = ({ epicDependencies }: CreateStoreOptions) => {
 };
 
 export type RootState = ReturnType<ReturnType<typeof createStore>["getState"]>;
-export type AppDispatch = ReturnType<typeof createStore>["dispatch"];
+export type AppStore = ReturnType<typeof createStore>;
+export type AppDispatch = AppStore["dispatch"];
 
 export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
 export const useAppDispatch = () => useDispatch<AppDispatch>();

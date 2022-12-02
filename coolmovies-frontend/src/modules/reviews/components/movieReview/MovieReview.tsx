@@ -6,11 +6,7 @@ import EditIcon from "../../../../../public/edit.svg";
 import { moviesActions, useAppDispatch } from "../../../../redux";
 import styles from "./styles";
 
-interface Props {
-  title: string;
-  body: string;
-  rating: number;
-  id: string;
+interface Props extends Movies.ReviewsData {
   movieId: string;
 }
 
@@ -45,6 +41,7 @@ const MovieReview = ({ title, body, rating, id, movieId }: Props) => {
       >
         {isEditing ? (
           <TextField
+            data-testid="title-edit-input"
             onChange={handleChange}
             value={reviewData.title}
             name="title"
@@ -64,6 +61,7 @@ const MovieReview = ({ title, body, rating, id, movieId }: Props) => {
                 rating: value || data.rating,
               }))
             }
+            data-testid="review-rating"
             precision={isEditing ? 1 : 0.1}
             readOnly={!isEditing}
             size="small"
@@ -90,6 +88,7 @@ const MovieReview = ({ title, body, rating, id, movieId }: Props) => {
                 width={20}
                 height={20}
                 alt="Edit Review Button"
+                data-testid="edit-review-button"
               />
             </IconButton>
           )}
@@ -97,6 +96,7 @@ const MovieReview = ({ title, body, rating, id, movieId }: Props) => {
       </Box>
       {isEditing ? (
         <TextField
+          data-testid="body-edit-input"
           onChange={handleChange}
           value={reviewData.body}
           name="body"

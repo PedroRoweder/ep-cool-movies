@@ -1,4 +1,4 @@
-import { ReviewsPage } from "../../src/modules/reviews";
+import { ReviewsPage } from "../../modules/reviews";
 
 const Reviews = () => <ReviewsPage />;
 

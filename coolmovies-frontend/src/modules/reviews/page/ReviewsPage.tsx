@@ -36,13 +36,11 @@ const ReviewsPage = () => {
             />
           ))}
         </Box>
-        {moviesState.selectedMovie && (
-          <MovieDetailsModal
-            isDetailsOpen={isDetailsOpen}
-            selectedMovie={moviesState.selectedMovie}
-            toggleDetailsOpen={toggleDetailsOpen}
-          />
-        )}
+        <MovieDetailsModal
+          isDetailsOpen={isDetailsOpen}
+          selectedMovie={moviesState.selectedMovie}
+          toggleDetailsOpen={toggleDetailsOpen}
+        />
       </Container>
     </>
   );

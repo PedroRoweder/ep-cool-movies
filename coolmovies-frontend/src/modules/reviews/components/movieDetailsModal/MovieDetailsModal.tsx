@@ -12,7 +12,7 @@ import { MovieReview } from "../movieReview";
 
 interface Props {
   isDetailsOpen: boolean;
-  selectedMovie: Movies.Data;
+  selectedMovie?: Movies.Data;
   toggleDetailsOpen: () => void;
 }
 
@@ -31,6 +31,10 @@ const MovieDetailsModal = ({
       })
     );
   }, [dispatch, moviesState.selectedMovie]);
+
+  if (!selectedMovie) {
+    return null;
+  }
 
   return (
     <Modal open={isDetailsOpen} onClose={toggleDetailsOpen}>

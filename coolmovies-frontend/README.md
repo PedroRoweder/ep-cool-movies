@@ -39,3 +39,26 @@ There are a couple of additional things that we would like to see in your submis
 3. Improve the folder structure of the frontend application how you see fit. (It's intentionally not great)
 4. Add the custom `edit.svg` from the `public` folder as an icon to launch editing the review.
 5. Add a unit testing framework of your choice, and some unit tests around the more complex areas of your code.
+
+---
+
+## Results
+
+### Movie List
+
+When accessing `/movies` you will be presented with all movies in our database, with infos like it's cover image, title, and average rating.
+
+![image](https://user-images.githubusercontent.com/42496316/205362919-fcbbd1d8-4561-4352-ae62-6a370862c497.png)
+
+Clicking on a movie, will pop a screen up with more info about it, it's reviews and a form to create your own review!
+
+### Movie Reviews
+
+This page shows all movie reviews, and some more detailed information about the movie like the release date and the directors name.
+Here, there is a form you can go through at the bottom, to add your own reviews, and there is also the ability to edit reviews by clicking on the edit icon on the top right of any review.
+
+https://user-images.githubusercontent.com/42496316/205364032-18ae71b2-6607-43ea-8573-304d302dfb44.mov
+
+
+
+
